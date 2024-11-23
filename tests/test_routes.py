@@ -12,7 +12,7 @@ def client() -> FlaskClient:
         yield client
 
 def test_index(client: FlaskClient):
-    response = client.get('/')
+    response = client.get('/ping')
 
     assert response.status_code == HTTPStatus.OK
-    assert response.json == {'message': 'Hello, Flask!'}
+    assert response.json == {'message': 'pong'}
