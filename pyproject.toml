@@ -9,7 +9,7 @@ packages = [{include = "app", from = "src"}]
 
 [tool.poetry.scripts]
 start = "app.app:app.run"
-
+debug = "app.app:app.run(debug=True)"
 
 [tool.poetry.dependencies]
 python = "^3.12"
