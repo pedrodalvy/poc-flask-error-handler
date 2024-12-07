@@ -41,8 +41,8 @@ Any errors not explicitly defined in the `exceptions.py` module will be handled 
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone git@github.com:pedrodalvy/poc-flask-error-handler.git
+   cd poc-flask-error-handler
    ```
 
 2. Install dependencies:
