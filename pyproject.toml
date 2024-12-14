@@ -4,12 +4,12 @@ version = "0.1.0"
 description = ""
 authors = ["Pedro Dalvy <pedrodalvy@outlook.com>"]
 readme = "README.md"
-packages = [{include = "app", from = "src"}]
+packages = [{ include = "app", from = "src" }]
 
 
 [tool.poetry.scripts]
-start = "app.app:app.run"
-debug = "app.app:app.run(debug=True)"
+start = "app.app:app.run(host='0.0.0.0', port=5000, debug=False)"
+debug = "app.app:app.run(host='0.0.0.0', port=5000, debug=True)"
 
 [tool.poetry.dependencies]
 python = "^3.12"
