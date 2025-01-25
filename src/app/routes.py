@@ -1,21 +1,31 @@
 from http.client import HTTPException
-from typing import Dict
 
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify, Response
 
 from src.app.exceptions import NotFoundException
 
-bp = Blueprint("app", __name__, url_prefix="/")
+bp = Blueprint("health", __name__, url_prefix="/")
 
 
 @bp.route("/ping")
-def ping() -> Dict[str, str]:
+def health_check() -> Response:
+    """
+    Provides a health check endpoint with different response modes.
+
+    Query parameters:
+    - action: Determines the response type
+        'ok' (default): Returns a success response
+        'not_found': Raises a NotFoundException
+        'not_handled': Raises an HTTPException
+    """
     action = request.args.get('action', 'ok')
 
     match action:
         case 'ok':
-            return {"message": "pong"}
+            return jsonify({"message": "pong"})
         case 'not_found':
-            raise NotFoundException('Not Found')
+            raise NotFoundException('Resource not found')
         case 'not_handled':
-            raise HTTPException('Not Handled Error')
+            raise HTTPException('Unhandled error occurred')
+        case _:
+            raise ValueError(f'Invalid action: {action}')

@@ -25,7 +25,7 @@ def test_not_found(client: FlaskClient):
     response = client.get('/ping', query_string=params)
 
     assert response.status_code == HTTPStatus.NOT_FOUND
-    assert response.json == {'message': 'Not Found'}
+    assert response.json == {'message': 'Resource not found'}
 
 
 def test_not_handled(client: FlaskClient):
